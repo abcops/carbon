@@ -82,7 +82,7 @@ class AMQPGraphiteProtocol(AMQClient):
                                     durable=True, auto_delete=False)
 
         # we use a private queue to avoid conflicting with existing bindings
-        reply = yield chan.queue_declare(exclusive=True)
+        reply = yield chan.queue_declare(queue="graphite",durable=True, auto_delete=False)
         my_queue = reply.queue
 
         # bind each configured metric pattern
